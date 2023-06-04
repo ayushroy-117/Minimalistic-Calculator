@@ -115,6 +115,9 @@ button {
     }
 }
 @media (max-width:1028px){
+    *{
+        padding-top: 2%;
+    }
     .calculator{
         margin-left: 30px;
         margin-bottom: 190px;
