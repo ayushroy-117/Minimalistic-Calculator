@@ -5,7 +5,7 @@ let output = "";
 
 const calculate = (btnValue) => {
   if (btnValue === "=" && output !== "") {
-    output = eval(output.replace("%", "/100"));
+    output = evaluateExpression();
   } else if (btnValue === "AC") {
     output = "";
   } else if (btnValue === "DEL") {
@@ -17,9 +17,37 @@ const calculate = (btnValue) => {
   display.value = output;
 };
 
+const evaluateExpression = () => {
+  try {
+    let result = eval(output.replace("%", "/100"));
+    return Number.isFinite(result) ? result : "Error";
+  } catch (error) {
+    return "Error";
+  }
+};
+
+const add = (a, b) => {
+  return a + b;
+};
+
+const subtract = (a, b) => {
+  return a - b;
+};
+
+const multiply = (a, b) => {
+  return a * b;
+};
+
+const divide = (a, b) => {
+  if (b === 0) {
+    return "Error";
+  }
+  return a / b;
+};
+
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    e.preventDefault(); // Prevent the default click behavior
+    e.preventDefault();
     calculate(e.target.dataset.value);
   });
 });
